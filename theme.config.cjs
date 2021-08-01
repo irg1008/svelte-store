@@ -9,7 +9,7 @@ const themeConfig = {
 	themes: [
 		{
 			name: "base",
-			selectors: [":root"],
+			selectors: [":root", ".light"],
 			theme: {
 				backgroundColor: {
 					primary: lightTheme[300],

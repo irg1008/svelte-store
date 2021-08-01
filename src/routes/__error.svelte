@@ -21,6 +21,10 @@
 	export let message: string;
 </script>
 
+<svelte:head>
+	<title>{`${status}: ${message}`}</title>
+</svelte:head>
+
 <div class="text-center mt-20">
 	<h1>{status}</h1>
 	<h2>{message}</h2>

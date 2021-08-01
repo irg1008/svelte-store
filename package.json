@@ -1,5 +1,5 @@
 {
-	"name": "~TODO~",
+	"name": "svelte-tailwind-jit",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
@@ -33,5 +33,8 @@
 		"tslib": "^2.0.0",
 		"typescript": "^4.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"svelte-local-storage-store": "^0.2.3"
+	}
 }
