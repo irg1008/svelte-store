@@ -24,7 +24,7 @@ const themeConfig = {
 				colors: {
 					lighter: lightTheme[100],
 					light: lightTheme[300],
-					medium: lightTheme[500],
+					medium: lightTheme[400],
 					dark: lightTheme[700],
 					darker: lightTheme[900],
 				},
@@ -53,7 +53,7 @@ const themeConfig = {
 					secondary: darkTheme[700],
 					tertiary: darkTheme[900],
 				},
-				color: {
+				colors: {
 					lighter: darkTheme[900],
 					light: darkTheme[700],
 					medium: darkTheme[500],
@@ -85,7 +85,7 @@ const themeConfig = {
 					secondary: emeralTheme[300],
 					tertiary: emeralTheme[50],
 				},
-				color: {
+				colors: {
 					lighter: emeralTheme[100],
 					light: emeralTheme[300],
 					medium: emeralTheme[500],
@@ -117,7 +117,7 @@ const themeConfig = {
 					secondary: amberTheme[300],
 					tertiary: amberTheme[50],
 				},
-				color: {
+				colors: {
 					lighter: amberTheme[100],
 					light: amberTheme[300],
 					medium: amberTheme[500],
