@@ -7,7 +7,9 @@ const config = {
 	purge: ["./src/**/*.{html,js,svelte,ts}"],
 	theme: {
 		extend: {
-			gray: colors.trueGray,
+			colors: {
+				gray: colors.trueGray,
+			},
 		},
 	},
 	variants: {},
