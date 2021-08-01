@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { theme as currentTheme, themes } from "$lib/stores/theme";
+	import { theme as currentTheme } from "$lib/stores/theme";
 	import ThemePicker from "$lib/components/atoms/ThemeChooser.svelte";
 </script>
 
