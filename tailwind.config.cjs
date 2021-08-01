@@ -2,6 +2,7 @@ const colors = require("tailwindcss/colors");
 const themes = require("./theme.config.cjs");
 const themeSwapper = require("tailwindcss-theme-swapper");
 const tailwindForms = require("@tailwindcss/forms");
+const scrollSnap = require("tailwindcss-scroll-snap");
 
 const config = {
 	mode: "jit",
@@ -14,7 +15,7 @@ const config = {
 		},
 	},
 	variants: {},
-	plugins: [themeSwapper(themes), tailwindForms],
+	plugins: [themeSwapper(themes), tailwindForms, scrollSnap],
 };
 
 module.exports = config;

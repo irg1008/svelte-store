@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { theme as currentTheme } from "$lib/stores/theme";
-	import ThemePicker from "$lib/components/atoms/ThemeChooser.svelte";
+	import ThemePicker from "$lib/components/atoms/ThemePicker.svelte";
 </script>
 
-<div class="bg-primary">
-	<ThemePicker />
-</div>
+<ThemePicker />

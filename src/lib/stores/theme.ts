@@ -22,7 +22,6 @@ const setTheme = (): void => {
 
     // Add new theme.
     root.classList.add(value);
-
   })
 
 };

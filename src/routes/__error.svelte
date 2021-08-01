@@ -25,7 +25,7 @@
 	<title>{`${status}: ${message}`}</title>
 </svelte:head>
 
-<div class="text-center mt-20">
+<div class="mt-20 text-center">
 	<h1>{status}</h1>
 	<h2>{message}</h2>
 </div>

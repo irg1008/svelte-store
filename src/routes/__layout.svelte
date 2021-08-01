@@ -4,9 +4,7 @@
 	import { setTheme } from "$lib/stores/theme";
 	import { onMount } from "svelte";
 
-	onMount(() => {
-		setTheme();
-	});
+	onMount(() => setTheme());
 </script>
 
 <svelte:head>
