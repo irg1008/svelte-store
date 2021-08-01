@@ -1,17 +1,22 @@
 <script lang="ts">
 	import "../app.postcss"; // Global styles.
-	import { theme as currentTheme } from "$lib/stores/theme"; // Current Theme.
 	import Header from "$lib/components/organisms/Header.svelte";
+	import { setTheme } from "$lib/stores/theme";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		setTheme();
+	});
 </script>
 
 <svelte:head>
 	<title>Svelte Store</title>
 </svelte:head>
 
-<div class="{$currentTheme}">
-	<Header />
-	<main>
-		<slot />
-	</main>
-	<footer></footer>
-</div>
+<Header />
+
+<main>
+	<slot />
+</main>
+
+<footer />

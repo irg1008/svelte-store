@@ -35,6 +35,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tailwindcss/forms": "^0.3.3",
 		"svelte-local-storage-store": "^0.2.3"
 	}
 }

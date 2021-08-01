@@ -1,6 +1,7 @@
 const colors = require("tailwindcss/colors");
 const themes = require("./theme.config.cjs");
 const themeSwapper = require("tailwindcss-theme-swapper");
+const tailwindForms = require("@tailwindcss/forms");
 
 const config = {
 	mode: "jit",
@@ -13,7 +14,7 @@ const config = {
 		},
 	},
 	variants: {},
-	plugins: [themeSwapper(themes)],
+	plugins: [themeSwapper(themes), tailwindForms],
 };
 
 module.exports = config;

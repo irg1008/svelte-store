@@ -3,6 +3,6 @@
 	import ThemePicker from "$lib/components/atoms/ThemeChooser.svelte";
 </script>
 
-<div class="{$currentTheme} bg-primary text-primary">
+<div class="bg-primary">
 	<ThemePicker />
 </div>
