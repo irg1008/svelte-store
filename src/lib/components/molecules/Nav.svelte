@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Logo from "$lib/components/atoms/Logo.svelte";
 	import ThemePicker from "$lib/components/atoms/ThemePicker.svelte";
+	import { cart } from "$lib/stores/cart";
+	import Icon, { ShoppingCart } from "svelte-hero-icons";
 </script>
 
 <div class="navbar">
@@ -12,7 +14,14 @@
 			<a href="/products">products</a>
 		</li>
 		<li>
-			<a href="/cart">cart</a>
+			<a href="/cart" class="cart">
+				<div class="cart-icon">
+					<Icon src={ShoppingCart} />
+				</div>
+				<div class="cart-length">
+					{$cart.length}
+				</div>
+			</a>
 		</li>
 	</ol>
 	<ThemePicker />
@@ -42,7 +51,31 @@
       justify-center;
 	}
 
-	li > a {
+	.cart {
+		@apply flex
+      items-center
+      justify-center
+      gap-1
+      relative;
+	}
+
+	.cart-icon {
+		@apply h-8;
+	}
+
+	.cart-length {
+		@apply bg-yellow-600
+      text-gray-50
+      rounded-full
+      px-0.5
+      border
+      border-darker
+      absolute
+      -top-2
+      -right-1;
+	}
+
+	a {
 		@apply hover:underline
       uppercase;
 	}

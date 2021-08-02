@@ -22,14 +22,15 @@
 			gap-2
 			w-auto
 			pl-3
+			p-1
 			rounded-custom
-			bg-light
+			bg-lighter
 			text-dark;
 	}
 
 	.select {
-		@apply bg-lighter
-			text-darker
+		@apply bg-dark
+			text-lighter
 			rounded-custom;
 	}
 </style>

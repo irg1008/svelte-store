@@ -9,6 +9,8 @@ body {
 
 button {
 	@apply p-2
+		min-w-[40px]
+		min-h-[40px]
     border-button
 		bg-light
 		transform
@@ -16,7 +18,8 @@ button {
 		active:scale-95
 		text-darker
     transition-all
-		rounded-custom;
+		rounded-custom
+		disabled:pointer-events-none;
 }
 
 @layer utilities {
