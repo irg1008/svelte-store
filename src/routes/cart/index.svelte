@@ -17,8 +17,8 @@
 				<th>Quantity</th>
 				<th>Price</th>
 				<th>Total Price</th>
-				<th>Delete</th>
 				<th>Add</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
