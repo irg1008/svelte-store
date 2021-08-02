@@ -8,7 +8,7 @@
 	);
 </script>
 
-{#if cart.length > 0}
+{#if $cart.length > 0}
 	<table class="table-auto" cellpadding="10">
 		<thead>
 			<tr>
