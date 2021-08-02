@@ -18,3 +18,10 @@
 </main>
 
 <footer />
+
+<style>
+	main {
+		@apply p-2
+			mt-20;
+	}
+</style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ThemePicker from "$lib/components/atoms/ThemePicker.svelte";
+	import Nav from "$lib/components/molecules/Nav.svelte";
 </script>
 
-<ThemePicker />
+<Nav />

@@ -2,15 +2,11 @@
 	import { theme, themes } from "$lib/stores/theme";
 </script>
 
-<div class="flex flex-col gap-2 p-4 bg-light text-dark">
+<div class="container">
 	<label for="theme-select">
 		<h2>Choose the theme:</h2>
 	</label>
-	<select
-		id="theme-select"
-		class="bg-lighter text-darker rounded-custom"
-		bind:value={$theme}
-	>
+	<select id="theme-select" class="select" bind:value={$theme}>
 		{#each themes as iTheme}
 			<option value={iTheme}>
 				{iTheme}
@@ -18,3 +14,22 @@
 		{/each}
 	</select>
 </div>
+
+<style>
+	.container {
+		@apply flex
+			items-center
+			gap-2
+			w-auto
+			pl-3
+			rounded-custom
+			bg-light
+			text-dark;
+	}
+
+	.select {
+		@apply bg-lighter
+			text-darker
+			rounded-custom;
+	}
+</style>
