@@ -45,6 +45,7 @@
 	</table>
 	<br />
 	<p>TOTAL: {total}</p>
+	<button on:click={cart.clearCart}>Clear cart</button>
 {:else}
 	Add products to cart to see them here
 {/if}
