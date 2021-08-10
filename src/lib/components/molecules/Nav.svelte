@@ -3,6 +3,9 @@
 	import ThemePicker from "$lib/components/atoms/ThemePicker.svelte";
 	import { cart } from "$lib/stores/cart";
 	import Icon, { ShoppingCart } from "svelte-hero-icons";
+
+	// Cart Length.
+	$: cartLength = $cart.reduce((sum, { quantity }) => sum + quantity, 0);
 </script>
 
 <div class="navbar">
@@ -19,7 +22,7 @@
 					<Icon src={ShoppingCart} />
 				</div>
 				<div class="cart-length">
-					{$cart.length}
+					{cartLength}
 				</div>
 			</a>
 		</li>

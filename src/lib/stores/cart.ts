@@ -1,5 +1,4 @@
 import { writable } from "svelte-local-storage-store";
-import { get } from "svelte/store";
 
 import type { Product, ProductId } from "$lib/stores/products";
 
@@ -12,40 +11,46 @@ type Cart = Item[];
 
 const emptyCart: Cart = [];
 
-const cart = writable<Cart>("cart", emptyCart);
+const createCart = () => {
+	const { subscribe, update, set } = writable<Cart>("cart", emptyCart);
 
-const getProductFromCart = (productId: ProductId) => {
-	const currentCart = get(cart);
-	const productInCart = currentCart.find(
-		(item) => item.product.id === productId,
-	);
+	const getProductFromCart = (productId: ProductId, cart: Cart) =>
+		cart.find((item) => item.product.id === productId);
 
-	return productInCart;
+	const addProduct = (product: Product): void => {
+		update((cart) => {
+			const productInCart = getProductFromCart(product.id, cart);
+
+			if (productInCart) productInCart.quantity++;
+			else cart.push({ product, quantity: 1 });
+
+			return cart;
+		});
+	};
+
+	const removeProduct = (productId: ProductId): void => {
+		update((cart) => {
+			const productInCart = getProductFromCart(productId, cart);
+
+			if (productInCart) {
+				if (productInCart.quantity > 1) productInCart.quantity--;
+				else cart = cart.filter((item) => item !== productInCart);
+			}
+
+			return cart;
+		});
+	};
+
+	const clearCart = () => set(emptyCart);
+
+	return {
+		subscribe,
+		addProduct,
+		removeProduct,
+		clearCart,
+	};
 };
 
-const addProduct = (product: Product): void => {
-	cart.update((cart) => {
-		const productInCart = getProductFromCart(product.id);
-
-		if (productInCart) productInCart.quantity++;
-		else cart.push({ product, quantity: 1 });
-
-		return cart;
-	});
-};
-
-const removeProduct = (productId: ProductId): void => {
-	cart.update((cart) => {
-		const productInCart = getProductFromCart(productId);
-
-		if (productInCart) {
-			if (productInCart.quantity > 1) productInCart.quantity--;
-			else cart = cart.filter((item) => item !== productInCart);
-		}
-
-		return cart;
-	});
-};
-
-export { cart, addProduct, removeProduct };
+const cart = createCart();
+export { cart };
 export type { Product };

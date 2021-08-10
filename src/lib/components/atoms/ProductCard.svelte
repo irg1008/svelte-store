@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { Product } from "$lib/stores/products";
-	import { addProduct } from "$lib/stores/cart";
+	import { cart } from "$lib/stores/cart";
 
 	export let product: Product;
-	const { image, name, price, available } = product;
+	const { image, name, price, available, slug } = product;
 
-	const addProductToCart = () => addProduct(product);
+	const addProductToCart = () => cart.addProduct(product);
 </script>
 
 <div class="card">
@@ -14,9 +14,12 @@
 	</div>
 	<h1>{name}</h1>
 	<h2>Price: {price}$</h2>
-	<button on:click={addProductToCart} disabled={!available}
-		>{available ? "Add to cart" : "Not avilable"}</button
-	>
+	<button on:click={addProductToCart} disabled={!available}>
+		{available ? "Add to cart" : "Not avilable"}
+	</button>
+	<a href="/products/{slug}">
+		<button> Details </button>
+	</a>
 </div>
 
 <style>

@@ -1,5 +1,5 @@
 <script>
-	import { cart, addProduct, removeProduct } from "$lib/stores/cart";
+	import { cart } from "$lib/stores/cart";
 
 	// Total price.
 	$: total = $cart.reduce(
@@ -34,10 +34,10 @@
 					<td>{product.price}</td>
 					<td>{quantity * product.price}</td>
 					<td>
-						<button on:click={() => addProduct(product)}> + </button>
+						<button on:click={() => cart.addProduct(product)}> + </button>
 					</td>
 					<td>
-						<button on:click={() => removeProduct(product.id)}> - </button>
+						<button on:click={() => cart.removeProduct(product.id)}> - </button>
 					</td>
 				</tr>
 			{/each}

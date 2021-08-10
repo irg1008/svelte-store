@@ -26,6 +26,5 @@ const setTheme = (): void => {
 
 };
 
-
 export { themes, theme, setTheme };
 export type { Theme }
