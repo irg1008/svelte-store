@@ -12,7 +12,7 @@ interface Product {
 	image: string;
 }
 
-const products = readable<Product[]>([
+const productsData: Product[] = [
 	{
 		id: 1,
 		slug: "apple",
@@ -43,7 +43,9 @@ const products = readable<Product[]>([
 		available: false,
 		description: "Is Grapes",
 	},
-]);
+];
+
+const products = readable<Product[]>(productsData);
 
 export { products };
 export type { Product, ProductId };

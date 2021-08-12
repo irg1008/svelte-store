@@ -1,10 +1,15 @@
 <script context="module" lang="ts">
 	import type { LoadInput } from "@sveltejs/kit";
+	import api from "$lib/contentful/api";
 
 	// const endpoint = "https://jsonplaceholder.typicode.com";
 
 	const load = async ({ page, fetch }: LoadInput) => {
 		const { slug } = page.params;
+
+		const res = await api.fetchProducts();
+
+		console.log(res);
 
 		// TODO: Access products with API or something like that.
 
@@ -22,7 +27,8 @@
 		return { status: res.status, error: res.statusText };
 		*/
 
-		if (["apple", "orange", "grapes"].includes(slug)) return { props: { slug } };
+		if (["apple", "orange", "grapes"].includes(slug))
+			return { props: { slug } };
 		else return { status: 404, error: `The product "${slug}" does not exist` };
 	};
 

@@ -4,7 +4,7 @@
 	import { setTheme } from "$lib/stores/theme";
 	import { onMount } from "svelte";
 
-	onMount(() => setTheme());
+	onMount(setTheme);
 </script>
 
 <svelte:head>
@@ -22,6 +22,6 @@
 <style>
 	main {
 		@apply p-2
-			mt-20;
+			mt-32;
 	}
 </style>
