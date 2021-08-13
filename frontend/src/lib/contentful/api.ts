@@ -1,11 +1,7 @@
-import { ContentfulClientApi, createClient, Entry } from "contentful";
+import { ContentfulClientApi, createClient } from "contentful";
 import config from "./config";
-import type { Product } from "./api.types";
 
 type ContentType = "product";
-const TypeInterface: Record<ContentType, any> = {
-  "product": typeof 
-}
 
 class Api {
 	client: ContentfulClientApi;
@@ -19,9 +15,9 @@ class Api {
 		});
 	}
 
-	getContentFulEntries = async (type: ContentType) => {
+	getContentfulEntries = async <T>(type: ContentType) => {
 		try {
-			const res = await this.client.getEntries<Product>({
+			const res = await this.client.getEntries<T>({
 				content_type: type,
 			});
 
@@ -30,16 +26,6 @@ class Api {
 		} catch (error) {
 			console.log(error);
 		}
-	};
-
-	fetchProducts = async (): Promise<Product[]> => {
-		const res = await this.client.getEntries<Product>({
-			content_type: "product",
-		});
-
-    return this.getContentFulEntries("product")
-		// Products.
-		return res.items.map((item) => item.fields);
 	};
 }
 

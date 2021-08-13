@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { LoadInput } from "@sveltejs/kit";
-	import api from "$lib/contentful/api";
+	import api from "$lib/graphcms/api";
 
 	// const endpoint = "https://jsonplaceholder.typicode.com";
 
@@ -9,7 +9,7 @@
 
 		const res = await api.fetchProducts();
 
-		console.log(res);
+		//console.log(res)
 
 		// TODO: Access products with API or something like that.
 
