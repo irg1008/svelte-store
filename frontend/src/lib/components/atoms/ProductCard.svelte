@@ -15,7 +15,7 @@
 	<h1>{name}</h1>
 	<h2>Price: {price}$</h2>
 	<button on:click={addProductToCart} disabled={!available}>
-		{available ? "Add to cart" : "Not avilable"}
+		{available ? "Add to cart" : "Not available"}
 	</button>
 	<a href="/products/{slug}">
 		<button> Details </button>
