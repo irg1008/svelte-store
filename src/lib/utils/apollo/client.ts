@@ -1,16 +1,12 @@
 import fetch from "node-fetch";
-import core from "@apollo/client/core/core.cjs.js";
-import cache from "@apollo/client/cache/cache.cjs.js";
-import context from "@apollo/client/link/context/context.cjs.js";
+import { ApolloClient, HttpLink } from "@apollo/client/core";
+import { InMemoryCache, NormalizedCacheObject } from "@apollo/client/cache";
+import { setContext } from "@apollo/client/link/context";
 import config from "./config";
-
-const { ApolloClient, HttpLink } = core;
-const { InMemoryCache } = cache;
-const { setContext } = context;
 
 class Client {
 	static instance: Client;
-	apolloClient: typeof ApolloClient;
+	apolloClient: ApolloClient<NormalizedCacheObject>;
 
 	private constructor() {
 		this.apolloClient = Client.setupClient();
@@ -23,10 +19,9 @@ class Client {
 		return Client.instance;
 	}
 
-	private static setupClient = (): typeof ApolloClient => {
+	private static setupClient = () => {
 		const link = new HttpLink({
 			uri: config.endpoint,
-			fetch,
 		});
 
 		const authLink = setContext((_, { headers }) => {

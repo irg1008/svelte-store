@@ -19,7 +19,7 @@
 		}
 
 		// If no product is recieved.
-		return { status: res.status, error: res.statusText };
+		return { status: res.status, error: res.statusText || "Unknown Error" };
 	};
 
 	export { load };

@@ -45,6 +45,7 @@ const post = async ({ body }: Request): Promise<EndpointOutput> => {
 		`;
 	}
 
+
 	try {
 		const { data } = await client.query({
 			query,
