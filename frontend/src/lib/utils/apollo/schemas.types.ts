@@ -1,11 +1,17 @@
+interface Image {
+	url: string;
+}
+
 interface Product {
 	id: string;
-	slug: string;
 	name: string;
+	slug: string;
 	price: number;
-	description: string;
 	available: boolean;
-	image: string;
+	images: Image[];
+	description: {
+		text: string;
+	};
 }
 
 export type { Product };

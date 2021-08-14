@@ -26,7 +26,7 @@
 				<tr>
 					<td>
 						<div class="image-holder">
-							<img src={product.image} alt={product.name} />
+							<img src={product.images[0].url} alt={product.name} />
 						</div>
 					</td>
 					<td>{product.name}</td>

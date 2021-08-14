@@ -1,45 +1,35 @@
 <script context="module" lang="ts">
 	import type { LoadInput } from "@sveltejs/kit";
-	import api from "$lib/graphcms/api";
-
-	// const endpoint = "https://jsonplaceholder.typicode.com";
+	import type { Product } from "$lib/utils/apollo/schemas.types";
 
 	const load = async ({ page, fetch }: LoadInput) => {
 		const { slug } = page.params;
 
-		const res = await api.fetchProducts();
+		const url = "/api/products";
 
-		//console.log(res)
-
-		// TODO: Access products with API or something like that.
-
-		/*
-		const res = await fetch(`${endpoint}/users/${productId}`);
-
-		console.log(res);
+		const res = await fetch(url, {
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			method: "POST",
+			body: JSON.stringify({ slug }),
+		});
 
 		if (res.status === 200) {
-			const user = await res.json();
-			return { props: { user } };
+			const product = await res.json();
+			return { props: { product: product[0] } };
 		}
 
 		// If no product is recieved.
 		return { status: res.status, error: res.statusText };
-		*/
-
-		if (["apple", "orange", "grapes"].includes(slug))
-			return { props: { slug } };
-		else return { status: 404, error: `The product "${slug}" does not exist` };
 	};
 
 	export { load };
 </script>
 
 <script lang="ts">
-	import { products } from "$lib/stores/products";
-	export let slug: string;
-
-	const product = $products.find((product) => product.slug === slug);
+	export let product: Product;
 </script>
 
 <svelte:head>

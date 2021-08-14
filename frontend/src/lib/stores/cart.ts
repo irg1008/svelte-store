@@ -1,6 +1,6 @@
 import { writable } from "svelte-local-storage-store";
 
-import type { Product, ProductId } from "$lib/stores/products";
+import type { Product } from "$lib/utils/apollo/schemas.types";
 
 interface Item {
 	product: Product;
@@ -14,7 +14,7 @@ const emptyCart: Cart = [];
 const createCart = () => {
 	const { subscribe, update, set } = writable<Cart>("cart", emptyCart);
 
-	const getProductFromCart = (productId: ProductId, cart: Cart) =>
+	const getProductFromCart = (productId: string, cart: Cart) =>
 		cart.find((item) => item.product.id === productId);
 
 	const addProduct = (product: Product): void => {
@@ -28,7 +28,7 @@ const createCart = () => {
 		});
 	};
 
-	const removeProduct = (productId: ProductId): void => {
+	const removeProduct = (productId: string): void => {
 		update((cart) => {
 			const productInCart = getProductFromCart(productId, cart);
 

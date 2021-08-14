@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { Product } from "$lib/stores/products";
+	import type { Product } from "$lib/utils/apollo/schemas.types";
 	import { cart } from "$lib/stores/cart";
 
 	export let product: Product;
-	const { image, name, price, available, slug } = product;
+	const { images, name, price, available, slug } = product;
 
 	const addProductToCart = () => cart.addProduct(product);
 </script>
 
 <div class="card">
 	<div class="image-holder">
-		<img src={image} alt={name} />
+		<img src={images[0].url} alt={name} />
 	</div>
 	<h1>{name}</h1>
 	<h2>Price: {price}$</h2>
