@@ -6,7 +6,7 @@
 	const load = async ({ page }: LoadInput) => {
 		const products = await getProducts(page.host);
 
-		if (products) {
+		if (products.length > 0) {
 			return { props: { products } };
 		}
 

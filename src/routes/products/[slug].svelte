@@ -8,7 +8,7 @@
 
 		const products = await getProductsBySlug(page.host, slug);
 
-		if (products) {
+		if (products.length > 0) {
 			return { props: { product: products[0] } };
 		}
 
