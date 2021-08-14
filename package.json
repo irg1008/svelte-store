@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"axios": "^0.21.1",
 		"svelte-hero-icons": "^2.4.0"
 	}
 }

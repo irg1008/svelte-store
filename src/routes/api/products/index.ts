@@ -1,9 +1,9 @@
 import client from "$lib/utils/apollo/client";
-import { gql } from "@apollo/client/core/core.cjs.js";
+import { gql, DocumentNode } from "@apollo/client/core";
 import type { EndpointOutput, Request } from "@sveltejs/kit";
 
 const post = async ({ body }: Request): Promise<EndpointOutput> => {
-	let query: typeof gql;
+	let query: DocumentNode;
 
 	if (body) {
 		const slug = body["slug"];
@@ -44,7 +44,6 @@ const post = async ({ body }: Request): Promise<EndpointOutput> => {
 			}
 		`;
 	}
-
 
 	try {
 		const { data } = await client.query({

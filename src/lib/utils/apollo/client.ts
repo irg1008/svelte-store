@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import { ApolloClient, HttpLink } from "@apollo/client/core";
 import { InMemoryCache, NormalizedCacheObject } from "@apollo/client/cache";
 import { setContext } from "@apollo/client/link/context";
@@ -9,7 +8,7 @@ class Client {
 	apolloClient: ApolloClient<NormalizedCacheObject>;
 
 	private constructor() {
-		this.apolloClient = Client.setupClient();
+		this.apolloClient = this.setupClient();
 	}
 
 	public static getInstance(): Client {
@@ -19,7 +18,7 @@ class Client {
 		return Client.instance;
 	}
 
-	private static setupClient = () => {
+	private setupClient = () => {
 		const link = new HttpLink({
 			uri: config.endpoint,
 		});

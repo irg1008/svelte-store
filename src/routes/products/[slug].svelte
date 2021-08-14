@@ -1,28 +1,19 @@
 <script context="module" lang="ts">
 	import type { LoadInput } from "@sveltejs/kit";
 	import type { Product } from "$lib/utils/apollo/schemas.types";
+	import { getProductsBySlug } from "$lib/middlewares/products";
 
-	const load = async ({ page, fetch }: LoadInput) => {
+	const load = async ({ page }: LoadInput) => {
 		const { slug } = page.params;
 
-		const url = "/api/products";
+		const products = await getProductsBySlug(page.host, slug);
 
-		const res = await fetch(url, {
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			method: "POST",
-			body: JSON.stringify({ slug }),
-		});
-
-		if (res.status === 200) {
-			const product = await res.json();
-			return { props: { product: product[0] } };
+		if (products) {
+			return { props: { product: products[0] } };
 		}
 
 		// If no product is recieved.
-		return { status: res.status, error: res.statusText };
+		return { status: 404, error: "No such product with given slug" };
 	};
 
 	export { load };
