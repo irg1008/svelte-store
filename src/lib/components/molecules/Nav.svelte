@@ -1,0 +1,85 @@
+<script lang="ts">
+	import Logo from "$lib/components/atoms/Logo.svelte";
+	import ThemePicker from "$lib/components/atoms/ThemePicker.svelte";
+	import { cart } from "$lib/stores/cart";
+	import Icon, { ShoppingCart } from "svelte-hero-icons";
+
+	// Cart Length.
+	$: cartLength = $cart.reduce((sum, { quantity }) => sum + quantity, 0);
+</script>
+
+<div class="navbar">
+	<a href="/" class="logo">
+		<Logo />
+	</a>
+	<ol class="links">
+		<li>
+			<a href="/products">products</a>
+		</li>
+		<li>
+			<a href="/cart" class="cart">
+				<div class="cart-icon">
+					<Icon src={ShoppingCart} />
+				</div>
+				<div class="cart-length">
+					{cartLength}
+				</div>
+			</a>
+		</li>
+	</ol>
+	<ThemePicker />
+</div>
+
+<style>
+	.navbar {
+		@apply flex
+      justify-between
+      items-center
+      bg-light
+      p-3
+      fixed
+      w-full
+      top-0
+      left-0;
+	}
+
+	.logo {
+		@apply h-8;
+	}
+
+	.links {
+		@apply flex
+      items-center
+      gap-4
+      justify-center;
+	}
+
+	.cart {
+		@apply flex
+      items-center
+      justify-center
+      gap-1
+      relative;
+	}
+
+	.cart-icon {
+		@apply h-8;
+	}
+
+	.cart-length {
+		@apply bg-yellow-600
+      text-gray-50
+      rounded-full
+      px-0.5
+      border
+      border-darker
+      absolute
+      -top-2
+      -right-1;
+	}
+
+	a {
+		@apply hover:underline
+      uppercase;
+	}
+</style>
