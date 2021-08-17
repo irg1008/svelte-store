@@ -3,6 +3,10 @@ const {
 	trueGray: lightTheme,
 	emerald: emeralTheme,
 	amber: amberTheme,
+	yellow: darkPrimary,
+	green: lightPrimary,
+	red: emeralPrimary,
+	lightBlue: amberPrimary,
 } = require("tailwindcss/colors");
 
 const themeConfig = {
@@ -12,14 +16,14 @@ const themeConfig = {
 			selectors: [":root", ".light"],
 			theme: {
 				backgroundColor: {
-					primary: lightTheme[300],
-					secondary: lightTheme[400],
-					tertiary: lightTheme[700],
+					primary: lightPrimary[700],
+					secondary: lightPrimary[400],
+					tertiary: lightPrimary[300],
 				},
 				textColor: {
-					primary: lightTheme[900],
-					secondary: lightTheme[700],
-					tertiary: lightTheme[50],
+					primary: lightPrimary[50],
+					secondary: lightPrimary[700],
+					tertiary: lightPrimary[900],
 				},
 				colors: {
 					lighter: lightTheme[100],
@@ -44,14 +48,14 @@ const themeConfig = {
 			selectors: [".dark"],
 			theme: {
 				backgroundColor: {
-					primary: darkTheme[700],
-					secondary: darkTheme[500],
-					tertiary: darkTheme[300],
+					primary: darkPrimary[700],
+					secondary: darkPrimary[500],
+					tertiary: darkPrimary[300],
 				},
 				textColor: {
-					primary: darkTheme[50],
-					secondary: darkTheme[700],
-					tertiary: darkTheme[900],
+					primary: darkPrimary[50],
+					secondary: darkPrimary[700],
+					tertiary: darkPrimary[900],
 				},
 				colors: {
 					lighter: darkTheme[900],
@@ -76,14 +80,14 @@ const themeConfig = {
 			selectors: [".emerald"],
 			theme: {
 				backgroundColor: {
-					primary: emeralTheme[500],
-					secondary: emeralTheme[600],
-					tertiary: emeralTheme[700],
+					primary: emeralPrimary[500],
+					secondary: emeralPrimary[600],
+					tertiary: emeralPrimary[700],
 				},
 				textColor: {
-					primary: emeralTheme[100],
-					secondary: emeralTheme[300],
-					tertiary: emeralTheme[50],
+					primary: emeralPrimary[100],
+					secondary: emeralPrimary[300],
+					tertiary: emeralPrimary[50],
 				},
 				colors: {
 					lighter: emeralTheme[100],
@@ -108,14 +112,14 @@ const themeConfig = {
 			selectors: [".amber"],
 			theme: {
 				backgroundColor: {
-					primary: amberTheme[500],
-					secondary: amberTheme[600],
-					tertiary: amberTheme[700],
+					primary: amberPrimary[500],
+					secondary: amberPrimary[600],
+					tertiary: amberPrimary[700],
 				},
 				textColor: {
-					primary: amberTheme[100],
-					secondary: amberTheme[300],
-					tertiary: amberTheme[50],
+					primary: amberPrimary[100],
+					secondary: amberPrimary[300],
+					tertiary: amberPrimary[50],
 				},
 				colors: {
 					lighter: amberTheme[100],

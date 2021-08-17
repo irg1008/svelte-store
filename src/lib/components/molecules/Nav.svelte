@@ -67,15 +67,13 @@
 	}
 
 	.cart-length {
-		@apply bg-yellow-600
+		@apply bg-primary
       text-gray-50
       rounded-full
-      px-0.5
-      border
-      border-darker
+      px-1
       absolute
       -top-2
-      -right-1;
+      -right-2;
 	}
 
 	a {
