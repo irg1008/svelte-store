@@ -1,17 +1,15 @@
 <script context="module" lang="ts">
 	import type { LoadInput } from "@sveltejs/kit";
-	import type { Product } from "$lib/utils/apollo/schemas.types";
-	import { getProducts } from "$lib/middlewares/products";
+	import api from "$lib/middlewares/api";
 
-	const load = async ({ page }: LoadInput) => {
-		const products = await getProducts(page.host);
+	const load = async (_: LoadInput) => {
+		const { data, error } = await api.getProducts();
 
-		if (products.length > 0) {
-			return { props: { products } };
+		if (error) {
+			return { status: 404, error: "No such product" };
 		}
 
-		// If no product is recieved.
-		return { status: 404, error: "No such product" };
+		return { props: { products: data.products } };
 	};
 
 	export { load };
@@ -19,6 +17,7 @@
 
 <script lang="ts">
 	import ProductCard from "$lib/components/atoms/ProductCard.svelte";
+	import type { Product } from "$lib/utils/apollo/schemas.types";
 
 	export let products: Product[];
 </script>
