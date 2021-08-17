@@ -11,14 +11,14 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@apollo/client": "^3.4.7",
+		"@apollo/client": "^3.4.8",
 		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/forms": "^0.3.3",
 		"@types/node-fetch": "^2.5.12",
 		"@types/tailwindcss": "^2.2.1",
-		"@typescript-eslint/eslint-plugin": "^4.29.1",
-		"@typescript-eslint/parser": "^4.29.1",
+		"@typescript-eslint/eslint-plugin": "^4.29.2",
+		"@typescript-eslint/parser": "^4.29.2",
 		"autoprefixer": "^10.3.1",
 		"cssnano": "^5.0.7",
 		"eslint": "^7.32.0",
