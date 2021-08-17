@@ -15,7 +15,7 @@
 		<img src={images[0].url} alt={name} />
 	</div>
 	<h1>{name}</h1>
-	<h2 class="price">{price}$</h2>
+	<h2 class="price">${price}</h2>
 	<div class="button-holder">
 		<button on:click={addProductToCart} disabled={!available}>
 			{available ? "Add to cart" : "Not available"}
