@@ -48,8 +48,8 @@ const themeConfig = {
 			selectors: [".dark"],
 			theme: {
 				backgroundColor: {
-					primary: darkPrimary[700],
-					secondary: darkPrimary[500],
+					primary: darkPrimary[500],
+					secondary: darkPrimary[800],
 					tertiary: darkPrimary[300],
 				},
 				textColor: {

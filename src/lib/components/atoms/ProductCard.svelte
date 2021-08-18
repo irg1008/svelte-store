@@ -34,6 +34,7 @@
 			p-3
 			w-56
 			bg-light
+			transform
 			rounded-xl;
 	}
 

@@ -4,6 +4,8 @@ const themeSwapper = require("tailwindcss-theme-swapper");
 const tailwindForms = require("@tailwindcss/forms");
 const scrollSnap = require("tailwindcss-scroll-snap");
 
+const safelist = ["scale-100", "scale-120"];
+
 const config = {
 	mode: "jit",
 	purge: ["./src/**/*.{html,js,svelte,ts}"],
@@ -14,6 +16,7 @@ const config = {
 			},
 		},
 	},
+	safelist,
 	variants: {},
 	plugins: [themeSwapper(themes), tailwindForms, scrollSnap],
 };

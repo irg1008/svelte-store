@@ -3,7 +3,7 @@
 	import Header from "$lib/components/organisms/Header.svelte";
 	import { setTheme } from "$lib/stores/theme";
 	import { onMount } from "svelte";
-	
+
 	onMount(() => {
 		setTheme();
 	});
@@ -23,7 +23,7 @@
 
 <style>
 	main {
-		@apply p-2
-			mt-32;
+		@apply p-4
+			mt-20;
 	}
 </style>

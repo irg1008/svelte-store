@@ -23,7 +23,7 @@
 </script>
 
 <div class="products">
-	{#each products as product}
+	{#each products as product (product.id)}
 		<ProductCard {product} />
 	{/each}
 </div>

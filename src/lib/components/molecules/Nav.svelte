@@ -37,7 +37,6 @@
       items-center
       bg-light
       p-3
-      fixed
       w-full
       top-0
       left-0;
@@ -71,9 +70,11 @@
       text-gray-50
       rounded-full
       px-1
+			border-2
+			border-light
       absolute
-      -top-2
-      -right-2;
+      -top-4
+      -right-3;
 	}
 
 	a {
