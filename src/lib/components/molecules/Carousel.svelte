@@ -15,6 +15,9 @@
 
 	let carousel: HTMLDivElement;
 
+	const getCorrentIndex = (position: number) =>
+		position < 0 ? imagesLength - 1 : position % imagesLength;
+
 	const onScroll = () => {
 		const currentIndex = Math.round(
 			(carousel.scrollTop / carousel.scrollHeight) * imagesLength,
@@ -29,12 +32,13 @@
 	};
 
 	const goToPosition = (position: number) => {
-		const target = document.getElementById(images[position]);
+		const correctIndex = getCorrentIndex(position);
+		const target = document.getElementById(images[correctIndex]);
 		swapItem(target);
 	};
 
 	const incrementIndex = () => {
-		const newIndex = (activeIndex + 1) % imagesLength;
+		const newIndex = getCorrentIndex(activeIndex + 1);
 		goToPosition(newIndex);
 	};
 
