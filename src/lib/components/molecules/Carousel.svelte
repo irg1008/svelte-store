@@ -26,14 +26,14 @@
 		resetInterval();
 	};
 
-	const swapItem = (target: EventTarget & HTMLElement) => {
+	const swapItem = (target: Element) => {
 		target.scrollIntoView();
 		resetInterval();
 	};
 
 	const goToPosition = (position: number) => {
 		const correctIndex = getCorrentIndex(position);
-		const target = document.getElementById(images[correctIndex]);
+		const target = carousel.children[correctIndex];
 		swapItem(target);
 	};
 
@@ -49,7 +49,6 @@
 	<div class="carousel" bind:this={carousel} on:scroll={onScroll}>
 		{#each images as image, i}
 			<section
-				id={image}
 				class="item"
 				on:click={({ currentTarget }) => swapItem(currentTarget)}
 			>
