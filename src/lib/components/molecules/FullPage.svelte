@@ -12,20 +12,25 @@
 
 	let carousel: HTMLDivElement;
 
+	const onScroll = () => {
+		const currentIndex = Math.round(
+			(carousel.scrollTop / carousel.scrollHeight) * images.length,
+		);
+		activeIndex = currentIndex;
+	};
+
 	const swapItem = (target: EventTarget & HTMLElement) => {
 		target.scrollIntoView();
-		activeIndex = images.indexOf(target.id);
 	};
 
 	const goToPosition = (position: number) => {
 		const target = document.getElementById(images[position]);
-		console.log(target.id);
 		swapItem(target);
 	};
 </script>
 
 <div class="flex">
-	<div class="carousel" bind:this={carousel}>
+	<div class="carousel" bind:this={carousel} on:scroll={onScroll}>
 		{#each images as image, i}
 			<section
 				id={image}
