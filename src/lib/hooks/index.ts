@@ -1,15 +1,51 @@
 import { onMount } from "svelte";
+import { writable } from "svelte/store";
 
 const useInterval = (
 	cb: () => void,
 	ms: number,
 ): {
 	resetInterval: () => void;
+	value: any;
 } => {
 	let interval: NodeJS.Timer;
 
-	const initInterval = () => (interval = setInterval(cb, ms));
-	const removeInterval = () => clearInterval(interval);
+	const initialValue = ms / 1000;
+	const value = writable(initialValue);
+	let valueInterval: NodeJS.Timer;
+
+	const cleanValueInterval = () => {
+		value.set(initialValue);
+		clearInterval(valueInterval);
+	};
+
+	const decrementValue = () => {
+		value.update((old) => {
+			old--;
+
+			if (old === 1) {
+				cleanValueInterval();
+			}
+
+			return old;
+		});
+	};
+
+	const createValueInterval = () => {
+		valueInterval = setInterval(() => {
+			decrementValue();
+		}, 1000);
+	};
+
+	const initInterval = () => {
+		createValueInterval();
+		interval = setInterval(cb, ms);
+	};
+
+	const removeInterval = () => {
+		cleanValueInterval();
+		clearInterval(interval);
+	};
 
 	const resetInterval = () => {
 		removeInterval();
@@ -21,7 +57,7 @@ const useInterval = (
 		return () => removeInterval();
 	});
 
-	return { resetInterval };
+	return { resetInterval, value };
 };
 
 export { useInterval };

@@ -38,7 +38,7 @@
 		goToPosition(newIndex);
 	};
 
-	const { resetInterval } = useInterval(incrementIndex, 4000);
+	const { resetInterval, value } = useInterval(incrementIndex, 4000);
 </script>
 
 <div class="flex">
@@ -60,6 +60,7 @@
 				<div class="control-inner" class:active={activeIndex === i} />
 			</div>
 		{/each}
+		{$value}
 	</div>
 </div>
 
