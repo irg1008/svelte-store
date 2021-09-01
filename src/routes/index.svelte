@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FullPage from "$lib/components/molecules/FullPage.svelte";
+	import Carousel from "$lib/components/molecules/Carousel.svelte";
 </script>
 
-<FullPage />
+<Carousel />

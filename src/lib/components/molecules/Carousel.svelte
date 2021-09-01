@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
 	import { useInterval } from "$lib/hooks";
 
 	const images = [
@@ -10,53 +9,79 @@
 		"/img/5.jpg",
 		"/img/6.jpg",
 	];
-	const maxIndex = images.length;
 
 	let activeIndex = 0;
+	const imagesLength = images.length;
 
-	const incrementIndex = () => {
-		const newIndex = (activeIndex + 1) % maxIndex;
-		swapItem(newIndex);
+	let carousel: HTMLDivElement;
+
+	const onScroll = () => {
+		const currentIndex = Math.round(
+			(carousel.scrollTop / carousel.scrollHeight) * imagesLength,
+		);
+		activeIndex = currentIndex;
+		resetInterval();
 	};
 
-	const swapItem = (position: number, reset?: boolean) => {
-		goto(`./#${images[position]}`);
-		activeIndex = position;
-		if (reset) resetInterval();
+	const swapItem = (target: EventTarget & HTMLElement) => {
+		target.scrollIntoView();
+		resetInterval();
+	};
+
+	const goToPosition = (position: number) => {
+		const target = document.getElementById(images[position]);
+		swapItem(target);
+	};
+
+	const incrementIndex = () => {
+		const newIndex = (activeIndex + 1) % imagesLength;
+		goToPosition(newIndex);
 	};
 
 	const { resetInterval } = useInterval(incrementIndex, 4000);
 </script>
 
-<div class="carousel">
-	{#each images as image, i}
-		<section id={image} class="item">
-			<img src={image} alt={(i + 1).toString()} />
-		</section>
-	{/each}
-</div>
+<div class="flex">
+	<div class="carousel" bind:this={carousel} on:scroll={onScroll}>
+		{#each images as image, i}
+			<section
+				id={image}
+				class="item"
+				on:click={({ currentTarget }) => swapItem(currentTarget)}
+			>
+				<img src={image} alt={(i + 1).toString()} />
+			</section>
+		{/each}
+	</div>
 
-<div class="controls">
-	{#each images as image, i}
-		<div title={image} on:click={() => swapItem(i, true)} class="control-item">
-			<div class="control-inner" class:active={activeIndex === i} />
-		</div>
-	{/each}
+	<div class="controls">
+		{#each images as image, i}
+			<div title={image} on:click={() => goToPosition(i)} class="control-item">
+				<div class="control-inner" class:active={activeIndex === i} />
+			</div>
+		{/each}
+	</div>
 </div>
 
 <style lang="postcss">
 	.carousel {
 		@apply snap
-			snap-x
+			snap-y
 			flex
-			overflow-x-hidden;
+			flex-col
+			gap-5
+			overflow-y-scroll;
+		height: 85vh;
 		scroll-behavior: smooth;
 	}
 
+	.carousel::-webkit-scrollbar {
+		display: none !important;
+	}
+
 	.item {
-		@apply w-full
-			flex-shrink-0
-			snap-start;
+		@apply snap-center
+			cursor-pointer;
 	}
 
 	img {
@@ -68,17 +93,19 @@
 
 	.controls {
 		@apply flex
+			flex-col
 			justify-center
 			mt-2
-			gap-2
-			w-6
-			h-6;
+			ml-10
+			gap-2;
 	}
 
 	.control-item {
 		@apply rounded-full
 			cursor-pointer
-			bg-medium;
+			bg-medium
+			w-6
+			h-6;
 	}
 
 	.control-inner {

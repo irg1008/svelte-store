@@ -17,6 +17,9 @@
 			<a href="/products">products</a>
 		</li>
 		<li>
+			<a href="/fullPage">Full Page Scrolling</a>
+		</li>
+		<li>
 			<a href="/cart" class="cart">
 				<div class="cart-icon">
 					<Icon src={ShoppingCart} />
