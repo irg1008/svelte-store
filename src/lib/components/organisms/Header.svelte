@@ -6,7 +6,7 @@
 	<Nav />
 </header>
 
-<style>
+<style lang="postcss">
 	header {
 		@apply z-10
 			w-full

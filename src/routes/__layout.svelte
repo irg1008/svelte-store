@@ -21,7 +21,7 @@
 
 <footer />
 
-<style>
+<style lang="postcss">
 	main {
 		@apply p-4
 			mt-20;

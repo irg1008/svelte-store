@@ -51,7 +51,7 @@
 	Add products to cart to see them here
 {/if}
 
-<style>
+<style lang="postcss">
 	table {
 		@apply text-center
 			bg-light

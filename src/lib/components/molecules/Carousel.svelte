@@ -20,7 +20,7 @@
 	};
 
 	const swapItem = (position: number, reset?: boolean) => {
-		goto(`./#${images[position]}`, { replaceState: true });
+		goto(`./#${images[position]}`);
 		activeIndex = position;
 		if (reset) resetInterval();
 	};
@@ -44,11 +44,10 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	.carousel {
 		@apply snap
 			snap-x
-			rounded-md
 			flex
 			overflow-x-hidden;
 		scroll-behavior: smooth;
@@ -71,7 +70,9 @@
 		@apply flex
 			justify-center
 			mt-2
-			gap-2;
+			gap-2
+			w-6
+			h-6;
 	}
 
 	.control-item {

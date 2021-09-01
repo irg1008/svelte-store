@@ -6,7 +6,7 @@ const {
 	yellow: darkPrimary,
 	green: lightPrimary,
 	red: emeralPrimary,
-	lightBlue: amberPrimary,
+	sky: amberPrimary,
 } = require("tailwindcss/colors");
 
 const themeConfig = {

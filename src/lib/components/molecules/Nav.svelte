@@ -30,7 +30,7 @@
 	<ThemePicker />
 </div>
 
-<style>
+<style lang="postcss">
 	.navbar {
 		@apply flex
       justify-between

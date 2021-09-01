@@ -15,7 +15,7 @@
 	</select>
 </div>
 
-<style>
+<style lang="postcss">
 	.container {
 		@apply flex
 			items-center
