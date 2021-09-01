@@ -168,7 +168,6 @@
 	.carousel {
 		@apply snap
 			snap-y
-			snap-proximity
 			overflow-y-scroll
       h-screen
       w-full;
@@ -184,14 +183,13 @@
 		@apply snap-start
 			cursor-pointer
       relative
-      w-full
-      h-full;
+      w-full;
 	}
 
 	img {
 		@apply block
+			h-screen
 			w-full
-      h-full
 			object-cover;
 	}
 
