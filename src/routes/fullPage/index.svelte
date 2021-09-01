@@ -87,6 +87,7 @@
 
 	h1 {
 		@apply absolute
+      text-center
       transform
       right-1/2
       bottom-1/2
