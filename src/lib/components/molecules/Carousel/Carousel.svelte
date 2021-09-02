@@ -70,31 +70,39 @@
 
 <svelte:window on:resize={calculateChildrenDistances} />
 
-<div class="carousel" bind:this={carousel} on:scroll={onScroll}>
-	<slot />
-</div>
-
-<div class="controls">
-	<div class="arrow up" on:click={goUp}>
-		<Icon src={ArrowUp} />
+<div class="container">
+	<div class="carousel" bind:this={carousel} on:scroll={onScroll}>
+		<slot />
 	</div>
-	{#each Array(carouselLength) as _, i}
-		<div
-			title="Go to position {i + 1}"
-			on:click={() => goToPosition(i)}
-			class:active={$activeIndex === i}
-			class="control-item"
-		/>
-	{/each}
-	<div class="arrow down" on:click={goDown}>
-		<Icon src={ArrowDown} />
-	</div>
-	<div class="remaining-time">
-		{$value}
+	<div class="controls">
+		<div class="arrow up" on:click={goUp}>
+			<Icon src={ArrowUp} />
+		</div>
+		{#each Array(carouselLength) as _, i}
+			<div
+				title="Go to position {i + 1}"
+				on:click={() => goToPosition(i)}
+				class:active={$activeIndex === i}
+				class="control-item"
+			/>
+		{/each}
+		<div class="arrow down" on:click={goDown}>
+			<Icon src={ArrowDown} />
+		</div>
+		<div class="remaining-time">
+			{$value}
+		</div>
 	</div>
 </div>
 
 <style lang="postcss">
+	.container {
+		@apply w-full
+			h-full
+			overflow-hidden
+			relative;
+	}
+
 	.carousel {
 		@apply snap
 			snap-y
@@ -147,7 +155,7 @@
 			flex-col
 			justify-center
 			items-center
-			m-10
+			mr-10
 			absolute
 			right-0
 			bottom-1/2
