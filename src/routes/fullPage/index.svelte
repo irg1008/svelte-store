@@ -56,7 +56,7 @@
 <style lang="postcss">
 	.full-page {
 		@apply h-screen
-			w-full;
+			w-screen;
 	}
 
 	img {

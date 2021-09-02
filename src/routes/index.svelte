@@ -11,7 +11,7 @@
 	];
 </script>
 
-<div class="container">
+<div class="carousel">
 	<Carousel>
 		{#each images as image, i}
 			<Item>
@@ -52,7 +52,7 @@
 		</Item>
 	</Carousel>
 </div>
-<div class="container">
+<div class="carousel">
 	<Carousel>
 		{#each images as image, i}
 			<Item>
@@ -95,7 +95,7 @@
 </div>
 
 <style lang="postcss">
-	.container {
+	.carousel {
 		@apply my-10
       h-96
 			w-full;

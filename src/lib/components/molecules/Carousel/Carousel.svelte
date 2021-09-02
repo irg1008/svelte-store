@@ -70,7 +70,7 @@
 
 <svelte:window on:resize={calculateChildrenDistances} />
 
-<div class="container">
+<div class="carousel-container">
 	<div class="carousel" bind:this={carousel} on:scroll={onScroll}>
 		<slot />
 	</div>
@@ -96,7 +96,7 @@
 </div>
 
 <style lang="postcss">
-	.container {
+	.carousel-container {
 		@apply w-full
 			h-full
 			overflow-hidden
@@ -107,6 +107,7 @@
 		@apply snap
 			snap-y
 			overflow-y-scroll
+			relative
       h-full
       w-full;
 		scroll-snap-points-y: repeat(100vh);
