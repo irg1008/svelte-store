@@ -35,11 +35,12 @@
 
 	const onScroll = () => {
 		const scrollPosition = carousel.scrollTop;
-		const threshold = 30;
 
-		const activeChild = carouselChildrenDistances.find(
-			(distance) => distance + threshold >= scrollPosition,
-		);
+		// The active child is the one wich top is closer to the window top given a threshold.
+		const activeChild = carouselChildrenDistances.find((distance, i) => {
+			const threshold = carousel.children.item(i).clientHeight / 2;
+			return distance + threshold >= scrollPosition;
+		});
 
 		const activeChildIndex = carouselChildrenDistances.indexOf(activeChild);
 
