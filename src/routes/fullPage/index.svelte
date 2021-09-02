@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 
 	import Icon, { ArrowUp, ArrowDown } from "svelte-hero-icons";
+	import { children } from "svelte/internal";
 
 	const images = [
 		"/img/1.jpg",
@@ -24,19 +25,26 @@
 		position < 0 ? carouselLength - 1 : position % carouselLength;
 
 	const onScroll = () => {
-		const currentIndex = Math.ceil(
-			(carousel.scrollTop / carousel.scrollHeight) * carouselLength,
-		);
-		activeIndex = currentIndex;
+		let index = activeIndex;
+
+		for (let i = 0; i < carouselLength; i++) {
+			const childBottomToTopDistance =
+				carousel.children[i].getBoundingClientRect().bottom;
+
+			if (childBottomToTopDistance === 30) {
+				index = i + 1;
+				break;
+			}
+		}
+
+		activeIndex = getCorrentIndex(index);
 	};
 
-	const swapItem = (target: Element) => {
-		target.scrollIntoView();
-	};
+	const swapItem = (target: Element) => target.scrollIntoView();
 
 	const goToPosition = (position: number) => {
 		const correctIndex = getCorrentIndex(position);
-		const target = carousel.children[correctIndex];
+		const target = carousel.children.item(correctIndex);
 		swapItem(target);
 	};
 
@@ -49,7 +57,7 @@
 		<section
 			class="item"
 			class:activeSection={activeIndex === i}
-			on:click={({ currentTarget }) => swapItem(currentTarget)}
+			on:click={() => goToPosition(i)}
 		>
 			<h1 class="centered-text">Image {i + 1}</h1>
 			<img src={image} alt={(i + 1).toString()} />
@@ -58,7 +66,7 @@
 	<section
 		class="item"
 		class:activeSection={activeIndex === carouselLength - 1}
-		on:click={({ currentTarget }) => swapItem(currentTarget)}
+		on:click={() => goToPosition(carouselLength - 1)}
 	>
 		<div class="info">
 			<h1>Info</h1>
