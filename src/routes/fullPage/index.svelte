@@ -26,8 +26,6 @@
 			return distanceToTop;
 		});
 
-		console.log(distancesToTop);
-
 		carouselChildrenDistances = distancesToTop;
 	};
 
