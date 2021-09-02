@@ -14,18 +14,18 @@
 
 	let carousel: HTMLDivElement;
 	let activeIndex = 0;
-	let imagesLength: number;
+	let carouselLength: number;
 
 	$: onMount(() => {
-		imagesLength = carousel.children.length;
+		carouselLength = carousel.children.length;
 	});
 
 	const getCorrentIndex = (position: number) =>
-		position < 0 ? imagesLength - 1 : position % imagesLength;
+		position < 0 ? carouselLength - 1 : position % carouselLength;
 
 	const onScroll = () => {
-		const currentIndex = Math.round(
-			(carousel.scrollTop / carousel.scrollHeight) * imagesLength,
+		const currentIndex = Math.ceil(
+			(carousel.scrollTop / carousel.scrollHeight) * carouselLength,
 		);
 		activeIndex = currentIndex;
 	};
@@ -46,12 +46,20 @@
 
 <div class="carousel" bind:this={carousel} on:scroll={onScroll}>
 	{#each images as image, i}
-		<section class="item">
+		<section
+			class="item"
+			class:activeSection={activeIndex === i}
+			on:click={({ currentTarget }) => swapItem(currentTarget)}
+		>
 			<h1 class="centered-text">Image {i + 1}</h1>
 			<img src={image} alt={(i + 1).toString()} />
 		</section>
 	{/each}
-	<section class="item">
+	<section
+		class="item"
+		class:activeSection={activeIndex === carouselLength - 1}
+		on:click={({ currentTarget }) => swapItem(currentTarget)}
+	>
 		<div class="info">
 			<h1>Info</h1>
 			<p>
@@ -161,8 +169,22 @@
 	</section>
 </div>
 
-<button class="up" on:click={goUp}><Icon src={ArrowUp} /></button>
-<button class="down" on:click={goDown}><Icon src={ArrowDown} /></button>
+<div class="controls">
+	<div class="arrow up" on:click={goUp}>
+		<Icon src={ArrowUp} />
+	</div>
+	{#each Array(carouselLength) as _, i}
+		<div
+			title="Go to position {i + 1}"
+			on:click={() => goToPosition(i)}
+			class:active={activeIndex === i}
+			class="control-item"
+		/>
+	{/each}
+	<div class="arrow down" on:click={goDown}>
+		<Icon src={ArrowDown} />
+	</div>
+</div>
 
 <style lang="postcss">
 	.carousel {
@@ -172,6 +194,7 @@
       h-screen
       w-full;
 		scroll-snap-points-y: repeat(100vh);
+		scroll-padding: 30px;
 		scroll-behavior: smooth;
 	}
 
@@ -183,6 +206,9 @@
 		@apply snap-start
 			cursor-pointer
       relative
+			transition-opacity
+			duration-300
+			delay-100
       w-full;
 	}
 
@@ -193,8 +219,13 @@
 			object-cover;
 	}
 
+	.item:not(.activeSection) {
+		@apply opacity-20;
+	}
+
 	.centered-text {
 		@apply absolute
+		text-white
 			text-center
 			transform
 			right-1/2
@@ -205,7 +236,7 @@
 
 	.info {
 		@apply p-6
-			bg-dark
+			bg-darker
 			flex
 			flex-col
 			text-lighter
@@ -213,33 +244,67 @@
 	}
 
 	h1 {
-		@apply text-white
-      font-bold
+		@apply font-bold
       uppercase
       text-8xl;
 	}
 
-	button {
-		@apply fixed
-      w-4
-      h-4
-      m-2
-      right-1/2
-      translate-x-1/2
-      transform
-      transition-transform
+	.arrow {
+		@apply w-8
+      h-8
+      my-4
+			cursor-pointer
+			bg-lighter
+			rounded-custom
+			p-2
       ease-in-out
-      hover:scale-x-90
+			transition-transform
       duration-200;
 	}
 
 	.up {
 		@apply top-0
-    hover:translate-y-2;
+    hover:-translate-y-1;
 	}
 
 	.down {
 		@apply bottom-0
-      hover:-translate-y-2;
+      hover:translate-y-1;
+	}
+
+	.controls {
+		@apply flex
+			flex-col
+			justify-center
+			items-center
+			m-10
+			absolute
+			right-0
+			bottom-1/2
+			transform
+			translate-y-1/2
+			gap-2;
+	}
+
+	.control-item {
+		@apply rounded-full
+			cursor-pointer
+			bg-dark
+			transition-all
+			border-light
+			border-2
+			w-3
+			h-3;
+	}
+
+	.control-item:not(.active) {
+		@apply opacity-80 
+			hover:bg-medium
+			hover:scale-150;
+	}
+
+	.active {
+		@apply bg-primary
+			duration-200;
 	}
 </style>
