@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Nav from "$lib/components/molecules/Nav.svelte";
+	export let headerHeight: number = undefined;
 </script>
 
-<header>
+<header bind:clientHeight={headerHeight}>
 	<Nav />
 </header>
 

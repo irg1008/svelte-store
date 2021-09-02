@@ -7,15 +7,17 @@
 	onMount(() => {
 		setTheme();
 	});
+
+	let headerHeight: number;
 </script>
 
 <svelte:head>
 	<title>Svelte Store</title>
 </svelte:head>
 
-<Header />
+<Header bind:headerHeight />
 
-<main>
+<main style="--header-height: {headerHeight}px">
 	<slot />
 </main>
 
@@ -23,7 +25,6 @@
 
 <style lang="postcss">
 	main {
-		@apply p-4
-			mt-20;
+		margin-top: var(--header-height);
 	}
 </style>

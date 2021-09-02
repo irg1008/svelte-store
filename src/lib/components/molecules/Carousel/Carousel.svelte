@@ -103,6 +103,7 @@
 		@apply w-full
 			h-screen
 			relative;
+		height: calc(100vh - var(--header-height));
 	}
 
 	.carousel {
