@@ -103,7 +103,7 @@
 
 	img {
 		@apply block
-			h-screen
+			h-full
 			w-full
 			object-cover;
 	}
