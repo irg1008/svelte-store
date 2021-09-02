@@ -196,10 +196,10 @@
 
 	.info {
 		@apply p-6
-			bg-darker
+			bg-light
 			flex
 			flex-col
-			text-lighter
+			text-darker
 			min-h-full
 			gap-6;
 	}
