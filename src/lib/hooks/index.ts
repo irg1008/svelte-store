@@ -1,13 +1,18 @@
 import { onMount } from "svelte";
 import { writable } from "svelte/store";
+import type { Writable } from "svelte/store";
 
-const useInterval = (
-	cb: () => void,
-	ms: number,
-): {
+interface IntervalProps {
+	cb: () => void;
+	ms: number;
+}
+
+interface IntervalReturnValue {
 	resetInterval: () => void;
-	value: any;
-} => {
+	value: Writable<number>;
+}
+
+const useInterval = ({ cb, ms }: IntervalProps): IntervalReturnValue => {
 	let interval: NodeJS.Timer;
 
 	const initialValue = ms / 1000;

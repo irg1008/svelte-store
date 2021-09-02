@@ -5,8 +5,8 @@
 	import { useInterval } from "$lib/hooks";
 	import type { CarouselContext } from "./Carousel.types";
 
-	export let interval = false;
-	export let intervalTime = interval ? 10 : 0; // Seconds.
+	export let useCarouselInterval = false;
+	export let intervalTime = 10; // Seconds.
 
 	let activeIndex = writable(0);
 
@@ -49,7 +49,10 @@
 	const goUp = () => goToPosition($activeIndex - 1);
 	const goDown = () => goToPosition($activeIndex + 1);
 
-	const { resetInterval, value } = useInterval(goDown, intervalTime * 1000);
+	const { resetInterval, value } = useInterval({
+		cb: useCarouselInterval && goDown,
+		ms: intervalTime * 1000,
+	});
 
 	setContext<CarouselContext>("CarouselContext", {
 		activeIndex,
@@ -63,21 +66,31 @@
 		<slot />
 	</div>
 	<div class="controls">
-		<div class="arrow up" on:click={goUp}>
+		<div
+			class="arrow up"
+			on:click={goUp}
+			title="Go to page {getCorrentIndex($activeIndex - 1) + 1}"
+		>
 			<Icon src={ArrowUp} />
 		</div>
 		{#each Array(carouselLength) as _, i}
 			<div
-				title="Go to position {i + 1}"
-				on:click={() => goToPosition(i)}
+				title={$activeIndex !== i
+					? `Go to page ${i + 1}`
+					: `Already in page ${i + 1}`}
+				on:click={() => $activeIndex !== i && goToPosition(i)}
 				class:active={$activeIndex === i}
 				class="control-item"
 			/>
 		{/each}
-		<div class="arrow down" on:click={goDown}>
+		<div
+			class="arrow down"
+			on:click={goDown}
+			title="Go to page {getCorrentIndex($activeIndex + 1) + 1}"
+		>
 			<Icon src={ArrowDown} />
 		</div>
-		{#if interval}
+		{#if useCarouselInterval}
 			<div class="remaining-time">
 				{$value}
 			</div>
@@ -89,7 +102,6 @@
 	.carousel-container {
 		@apply w-full
 			h-screen
-			overflow-hidden
 			relative;
 	}
 
@@ -112,7 +124,6 @@
 		@apply bg-primary
 			text-lighter
 			rounded-custom
-			w-8
 			text-center
 			p-2;
 	}
@@ -164,7 +175,6 @@
 
 	.control-item {
 		@apply rounded-full
-			cursor-pointer
 			bg-dark
 			transition-all
 			border-light
@@ -174,9 +184,10 @@
 	}
 
 	.control-item:not(.active) {
-		@apply opacity-80 
+		@apply opacity-80
+			cursor-pointer
 			hover:bg-medium
-			hover:scale-150;
+			hover:scale-125;
 	}
 
 	.active {

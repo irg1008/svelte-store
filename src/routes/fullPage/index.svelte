@@ -11,7 +11,7 @@
 	];
 </script>
 
-<Carousel interval={false}>
+<Carousel>
 	{#each images as image, i}
 		<Item>
 			<h1 class="centered-text">Image {i + 1}</h1>

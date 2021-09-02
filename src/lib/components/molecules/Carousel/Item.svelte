@@ -16,8 +16,8 @@
 <section
 	class="item"
 	bind:this={item}
-	class:activeSection={$activeIndex === i}
-	on:click={() => goToPosition(i)}
+	class:active-section={$activeIndex === i}
+	on:click={() => $activeIndex !== i && goToPosition(i)}
 >
 	<slot />
 </section>
@@ -25,16 +25,17 @@
 <style lang="postcss">
 	.item {
 		@apply snap-start
-			cursor-pointer
       relative
 			transition-opacity
 			duration-300
 			delay-100
-			min-h-full
-      w-full;
+			h-full
+      w-full
+			flex;
 	}
 
-	.item:not(.activeSection) {
-		@apply opacity-20;
+	.item:not(.active-section) {
+		@apply opacity-20
+			cursor-pointer;
 	}
 </style>
