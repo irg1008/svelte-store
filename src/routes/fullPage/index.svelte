@@ -26,6 +26,8 @@
 			return distanceToTop;
 		});
 
+		console.log(distancesToTop);
+
 		carouselChildrenDistances = distancesToTop;
 	};
 
@@ -61,6 +63,8 @@
 	const goUp = () => goToPosition(activeIndex - 1);
 	const goDown = () => goToPosition(activeIndex + 1);
 </script>
+
+<svelte:window on:resize={calculateChildrenDistances} />
 
 <div class="carousel" bind:this={carousel} on:scroll={onScroll}>
 	{#each images as image, i}
