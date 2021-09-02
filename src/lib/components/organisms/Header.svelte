@@ -12,6 +12,7 @@
 		@apply z-10
 			w-full
 			fixed
+			shadow-lg
 			top-0
 			left-0;
 	}
