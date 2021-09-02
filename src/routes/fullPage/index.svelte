@@ -83,6 +83,7 @@
 			flex
 			flex-col
 			text-lighter
+			h-full
 			gap-6;
 	}
 

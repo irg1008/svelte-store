@@ -5,7 +5,7 @@
 	import { useInterval } from "$lib/hooks";
 	import type { CarouselContext } from "./Carousel.types";
 
-	const intervalTime = 10; // Seconds
+	export let intervalTime = 10; // Seconds
 
 	let carousel: HTMLDivElement;
 	let carouselLength: number;
@@ -160,9 +160,17 @@
 			absolute
 			right-0
 			bottom-1/2
+			transition-opacity
+			duration-300
+			ease-in-out
 			transform
 			translate-y-1/2
+			opacity-0
 			gap-2;
+	}
+
+	.carousel-container:hover > .controls {
+		@apply opacity-100;
 	}
 
 	.control-item {
