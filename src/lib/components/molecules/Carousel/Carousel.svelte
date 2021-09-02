@@ -5,46 +5,35 @@
 	import { useInterval } from "$lib/hooks";
 	import type { CarouselContext } from "./Carousel.types";
 
-	export let intervalTime = 10; // Seconds
+	export let interval = false;
+	export let intervalTime = interval ? 10 : 0; // Seconds.
 
-	let carousel: HTMLDivElement;
-	let carouselLength: number;
-	let carouselChildrenDistances: number[];
 	let activeIndex = writable(0);
 
-	const calculateChildrenDistances = () => {
-		const carouselChildrens = Array.from(carousel.children);
-
-		const distancesToTop = carouselChildrens.map((_, i) => {
-			const distanceToTop = carouselChildrens
-				.slice(0, i)
-				.reduce((sum, curr) => (sum += curr.clientHeight), 0);
-			return distanceToTop;
-		});
-
-		carouselChildrenDistances = distancesToTop;
-	};
+	let carousel: HTMLElement;
+	let carouselChildren: Element[] = [];
+	$: carouselLength = carouselChildren.length;
 
 	onMount(() => {
-		carouselLength = carousel.children.length;
-		calculateChildrenDistances();
+		carouselChildren = Array.from(carousel.children);
 	});
 
 	const getCorrentIndex = (position: number) =>
 		position < 0 ? carouselLength - 1 : position % carouselLength;
 
 	const onScroll = () => {
-		const scrollPosition = carousel.scrollTop;
-
-		// The active child is the one wich top is closer to the window top given a threshold.
-		const activeChild = carouselChildrenDistances.find((distance, i) => {
-			const threshold = carousel.children.item(i).clientHeight / 2;
-			return distance + threshold >= scrollPosition;
+		const activeChild = carouselChildren.find((child) => {
+			const half = child.clientHeight / 2;
+			const bottom = child.getBoundingClientRect().bottom;
+			const show = bottom - half >= 0;
+			return show;
 		});
 
-		const activeChildIndex = carouselChildrenDistances.indexOf(activeChild);
+		const activeChildIndex = carouselChildren.indexOf(activeChild);
+		const correctIndex = getCorrentIndex(activeChildIndex);
 
-		activeIndex.set(getCorrentIndex(activeChildIndex));
+		activeIndex.set(correctIndex);
+
 		resetInterval();
 	};
 
@@ -69,8 +58,6 @@
 	});
 </script>
 
-<svelte:window on:resize={calculateChildrenDistances} />
-
 <div class="carousel-container">
 	<div class="carousel" bind:this={carousel} on:scroll={onScroll}>
 		<slot />
@@ -90,16 +77,18 @@
 		<div class="arrow down" on:click={goDown}>
 			<Icon src={ArrowDown} />
 		</div>
-		<div class="remaining-time">
-			{$value}
-		</div>
+		{#if interval}
+			<div class="remaining-time">
+				{$value}
+			</div>
+		{/if}
 	</div>
 </div>
 
 <style lang="postcss">
 	.carousel-container {
 		@apply w-full
-			h-full
+			h-screen
 			overflow-hidden
 			relative;
 	}
@@ -107,12 +96,11 @@
 	.carousel {
 		@apply snap
 			snap-y
+			snap-p-8
 			overflow-y-scroll
 			relative
       h-full
       w-full;
-		scroll-snap-points-y: repeat(100vh);
-		scroll-padding: 30px;
 		scroll-behavior: smooth;
 	}
 
