@@ -2,7 +2,6 @@
 	import { onMount } from "svelte";
 
 	import Icon, { ArrowUp, ArrowDown } from "svelte-hero-icons";
-	import { children } from "svelte/internal";
 
 	const images = [
 		"/img/1.jpg",
