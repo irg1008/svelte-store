@@ -30,7 +30,8 @@
 			transition-opacity
 			duration-300
 			delay-100
-      w-full;
+      w-full
+			h-full;
 	}
 
 	.item:not(.activeSection) {

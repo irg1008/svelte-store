@@ -97,8 +97,8 @@
 <style lang="postcss">
 	.container {
 		@apply my-10
+      h-96
 			w-full;
-		height: 40vh;
 	}
 
 	img {
