@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { useInterval } from "$lib/hooks";
+	import { onMount } from "svelte";
 
 	const images = [
 		"/img/1.jpg",
@@ -14,6 +15,11 @@
 	const imagesLength = images.length;
 
 	let carousel: HTMLDivElement;
+	let carouselLength: number;
+
+	$: onMount(() => {
+		carouselLength = carousel.children.length;
+	});
 
 	const getCorrentIndex = (position: number) =>
 		position < 0 ? imagesLength - 1 : position % imagesLength;

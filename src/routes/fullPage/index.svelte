@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-
 	import Icon, { ArrowUp, ArrowDown } from "svelte-hero-icons";
 
 	const images = [
@@ -13,30 +12,42 @@
 	];
 
 	let carousel: HTMLDivElement;
-	let activeIndex = 0;
 	let carouselLength: number;
+	let carouselChildrenDistances: number[];
+	let activeIndex = 0;
 
-	$: onMount(() => {
+	const calculateChildrenDistances = () => {
+		const carouselChildrens = Array.from(carousel.children);
+
+		const distancesToTop = carouselChildrens.map((_, i) => {
+			const distanceToTop = carouselChildrens
+				.slice(0, i)
+				.reduce((sum, curr) => (sum += curr.clientHeight), 0);
+			return distanceToTop;
+		});
+
+		carouselChildrenDistances = distancesToTop;
+	};
+
+	onMount(() => {
 		carouselLength = carousel.children.length;
+		calculateChildrenDistances();
 	});
 
 	const getCorrentIndex = (position: number) =>
 		position < 0 ? carouselLength - 1 : position % carouselLength;
 
 	const onScroll = () => {
-		let index = activeIndex;
+		const scrollPosition = carousel.scrollTop;
+		const threshold = 30;
 
-		for (let i = 0; i < carouselLength; i++) {
-			const childBottomToTopDistance =
-				carousel.children[i].getBoundingClientRect().bottom;
+		const activeChild = carouselChildrenDistances.find(
+			(distance) => distance + threshold >= scrollPosition,
+		);
 
-			if (childBottomToTopDistance === 30) {
-				index = i + 1;
-				break;
-			}
-		}
+		const activeChildIndex = carouselChildrenDistances.indexOf(activeChild);
 
-		activeIndex = getCorrentIndex(index);
+		activeIndex = getCorrentIndex(activeChildIndex);
 	};
 
 	const swapItem = (target: Element) => target.scrollIntoView();
