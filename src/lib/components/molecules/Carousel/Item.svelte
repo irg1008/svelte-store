@@ -29,7 +29,7 @@
 			transition-opacity
 			duration-300
 			delay-100
-			min-h-full
+			min-h-screen
       w-full
 			flex;
 	}

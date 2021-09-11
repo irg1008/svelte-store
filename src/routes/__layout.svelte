@@ -11,10 +11,6 @@
 	let headerHeight: number;
 </script>
 
-<svelte:head>
-	<title>Svelte Store</title>
-</svelte:head>
-
 <Header bind:headerHeight />
 
 <main style="--header-height: {headerHeight}px">

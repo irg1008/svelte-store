@@ -1,8 +1,11 @@
 <script context="module" lang="ts">
 	import type { LoadOutput } from "@sveltejs/kit";
+	import Meta from "$lib/components/atoms/Meta.svelte";
 
-	const load = (output: LoadOutput) => {
-		const { status, error } = output;
+	const load = ({
+		status = 500,
+		error = "",
+	}: LoadOutput): { props: { status: number; message: string } } => {
 		const message = typeof error === "string" ? error : error.message;
 
 		return {
@@ -21,9 +24,7 @@
 	export let message: string;
 </script>
 
-<svelte:head>
-	<title>{`${status}: ${message}`}</title>
-</svelte:head>
+<Meta title={`${status}: ${message}`} />
 
 <div class="text-center">
 	<h1>{status}</h1>

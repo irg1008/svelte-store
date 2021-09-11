@@ -18,7 +18,7 @@ const config = {
 	},
 	safelist,
 	variants: {},
-	plugins: [themeSwapper(themes), tailwindForms, scrollSnap],
+	plugins: [themeSwapper(themes), tailwindForms(), scrollSnap],
 };
 
 module.exports = config;
