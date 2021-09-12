@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Svelte Store - {title}</title>
+	<title>Anatomía Mediterránea - {title}</title>
 	{#if description}
 		<meta name="description" content={description} />
 	{/if}
