@@ -8,10 +8,10 @@
 		setTheme();
 	});
 
-	let headerHeight: number;
+	let headerHeight: number = 0;
 </script>
 
-<Header bind:headerHeight />
+<!--Header bind:headerHeight /-->
 
 <main style="--header-height: {headerHeight}px">
 	<slot />

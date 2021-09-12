@@ -63,7 +63,7 @@
 <Carousel useCarouselInterval intervalTime={5}>
 	{#each images as image, i}
 		<Item>
-			<h1 class="bottom-text">{image.title}</h1>
+			<!--h1 class="bottom-text">{image.title}</h1-->
 			<img src={parsedSrc(image.src)} alt={image.title} />
 		</Item>
 	{/each}

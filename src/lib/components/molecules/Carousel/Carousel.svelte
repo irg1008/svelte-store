@@ -166,8 +166,8 @@
 			ease-in-out
 			transform
 			translate-y-1/2
-			opacity-0
-			gap-2;
+			gap-2
+			md:opacity-0;
 	}
 
 	.carousel-container:hover > .controls {
