@@ -1,160 +1,82 @@
 <script lang="ts">
 	import Meta from "$lib/components/atoms/Meta.svelte";
-	import Carousel, { Item } from "$lib/components/molecules/Carousel";
 
-	const imgPrefix = "/img/pictures/web/";
-	const imgSufix = "-min.webp";
-	const parsedSrc = (num: number) => `${imgPrefix}${num}${imgSufix}`;
-
-	const images: { src: number; title: string }[] = [
-		{
-			src: 1,
-			title: "Mujer quemada",
-		},
-		{
-			src: 2,
-			title: "Nadando en resina",
-		},
-		{
-			src: 3,
-			title: "Mujer de espaldas quemada",
-		},
-		{
-			src: 4,
-			title: "Salinas",
-		},
-		{
-			src: 5,
-			title: "Mar borroso",
-		},
-		{
-			src: 6,
-			title: "Dos islas",
-		},
-		{
-			src: 7,
-			title: "Mujer quemada 2",
-		},
-		{
-			src: 8,
-			title: "Mujer de espaldas",
-		},
-		{
-			src: 9,
-			title: "Mar de resina",
-		},
-		{
-			src: 10,
-			title: "Desnuda ante el sol",
-		},
-		{
-			src: 11,
-			title: "Nadando en resina 2",
-		},
-		{
-			src: 12,
-			title: "Paisaje de Ibiza",
-		},
-	];
+	const mail = "info@gazquez.art";
 </script>
 
-<Meta title="Home" />
+<Meta
+	title="Working on it"
+	description="This page is a place for art. We will open soon, stay tuned."
+/>
 
-<Carousel useCarouselInterval intervalTime={5}>
-	{#each images as image, i}
-		<Item>
-			<!--h1 class="bottom-text">{image.title}</h1-->
-			<img src={parsedSrc(image.src)} alt={image.title} />
-		</Item>
-	{/each}
-	<Item>
-		<div class="info">
-			<h1>Info</h1>
-			<p>
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
-				exercitationem inventore cupiditate eaque cumque? Debitis error
-				laudantium mollitia sed nemo sint reprehenderit, deleniti aliquam,
-				quaerat inventore dignissimos consequatur aperiam veritatis? Lorem ipsum
-				dolor sit, amet consectetur adipisicing elit. Incidunt dicta ea est
-				ipsum veritatis, pariatur accusamus eius similique delectus recusandae
-				blanditiis dolorum aspernatur voluptatum architecto autem molestiae
-				aliquam libero suscipit! Lorem ipsum dolor sit amet consectetur
-				adipisicing elit. Similique libero atque voluptates error doloribus
-				voluptate rerum facere, consequatur rem? In facere illum adipisci quidem
-				ab cum cupiditate ex molestiae ut! Lorem ipsum dolor sit, amet
-				consectetur adipisicing elit. Numquam pariatur delectus sunt officiis
-				dolore aliquid accusantium magni modi, nisi enim beatae eius harum
-				iusto. Ipsa expedita repudiandae modi blanditiis nihil? Lorem ipsum
-				dolor sit amet consectetur adipisicing elit. Perspiciatis facilis
-				delectus cum eum non repellendus rem doloribus tempora, quisquam unde
-				quam illo quidem placeat nam quis aliquam porro suscipit sint. Lorem
-				ipsum dolor sit amet consectetur adipisicing elit. Illum laborum maxime,
-				facilis nam laudantium voluptate quasi doloribus, magnam labore rerum at
-				nisi eligendi odit suscipit veniam vitae sint quas tempore. Lorem ipsum,
-				dolor sit amet consectetur adipisicing elit. Cupiditate ipsa odio nulla?
-				Nesciunt veniam quis vero nemo fugit necessitatibus, molestiae, nostrum
-				consequatur earum illum neque natus deleniti ratione aspernatur nihil?
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
-				exercitationem inventore cupiditate eaque cumque? Debitis error
-				laudantium mollitia sed nemo sint reprehenderit, deleniti aliquam,
-				quaerat inventore dignissimos consequatur aperiam veritatis? Lorem ipsum
-				dolor sit, amet consectetur adipisicing elit. Incidunt dicta ea est
-				ipsum veritatis, pariatur accusamus eius similique delectus recusandae
-				blanditiis dolorum aspernatur voluptatum architecto autem molestiae
-				aliquam libero suscipit! Lorem ipsum dolor sit amet consectetur
-				adipisicing elit. Similique libero atque voluptates error doloribus
-				voluptate rerum facere, consequatur rem? In facere illum adipisci quidem
-				ab cum cupiditate ex molestiae ut! Lorem ipsum dolor sit, amet
-				consectetur adipisicing elit. Numquam pariatur delectus sunt officiis
-				dolore aliquid accusantium magni modi, nisi enim beatae eius harum
-				iusto. Ipsa expedita repudiandae modi blanditiis nihil? Lorem ipsum
-				dolor sit amet consectetur adipisicing elit. Perspiciatis facilis
-				delectus cum eum non repellendus rem doloribus tempora, quisquam unde
-				quam illo quidem placeat nam quis aliquam porro suscipit sint. Lorem
-				ipsum dolor sit amet consectetur adipisicing elit. Illum laborum maxime,
-				facilis nam laudantium voluptate quasi doloribus, magnam labore rerum at
-				nisi eligendi odit suscipit veniam vitae sint quas tempore. Lorem ipsum,
-				dolor sit amet consectetur adipisicing elit. Cupiditate ipsa odio nulla?
-				Nesciunt veniam quis vero nemo fugit necessitatibus, molestiae, nostrum
-				consequatur earum illum neque natus deleniti ratione aspernatur nihil?
-			</p>
-		</div>
-	</Item>
-</Carousel>
+<section>
+	<div class="bg" />
+	<div class="text-container">
+		<h1>We are working on it!!</h1>
+		<h1>meanwhile...</h1>
+		<a href="mailto:{mail}">
+			<h2 class="email">{mail}</h2>
+		</a>
+	</div>
+</section>
 
 <style lang="postcss">
-	img {
-		@apply block
+	section {
+		@apply w-full
 			h-screen
-			w-full
-			object-contain;
-	}
-
-	.bottom-text {
-		@apply absolute
-			text-opacity-40
-		text-white
-			text-left
-			w-full
-			left-20
-			bottom-40;
-	}
-
-	.info {
-		@apply p-6
-			bg-light
 			flex
+			items-center
+			justify-center;
+	}
+
+	.bg {
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+			url("https://i.giphy.com/Q5idwzxmoRkBdiEVpu.gif");
+		filter: contrast(105%) brightness(150%) saturate(150%) hue-rotate(310deg);
+		@apply absolute
+			w-full
+			h-full
+			bg-cover;
+	}
+
+	.text-container {
+		@apply flex
 			flex-col
-			text-darker
-			min-h-full
-			gap-6;
+			font-semibold
+			gap-4
+			animate-fade-in
+			z-10;
 	}
 
 	h1 {
-		@apply font-bold
-      uppercase
-      text-8xl;
+		@apply text-xl
+			w-20
+			leading-5
+			text-gray-500;
+	}
+
+	h2 {
+		@apply text-lg;
+	}
+
+	a {
+		@apply text-white
+			-ml-2;
+	}
+
+	a::after {
+		content: "";
+		@apply block
+			w-0
+			border-b-2
+			transition-all
+			ease-out
+			duration-200
+			border-white
+			m-auto;
+	}
+
+	a:hover::after {
+		@apply w-full;
 	}
 </style>
